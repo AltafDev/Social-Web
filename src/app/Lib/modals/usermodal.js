@@ -18,26 +18,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
     avatar: {
       type: String,
       required: true,
-    },
-    followers: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-      default: [],
-    },
-    following: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-      default: [],
-    },
+    }
   },
   { timestamps: true }
 );
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const User =  mongoose.model('User', userSchema);
 
 export default User;

@@ -63,8 +63,8 @@ export async function POST(req) {
         first_name,
         last_name,
         image_url,
-        email_addresses,
-        username
+        email_addresses
+        
       );
       if (user && eventType === 'user.created') {
         try {

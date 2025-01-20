@@ -11,7 +11,7 @@ export const connect = async () => {
 
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      dbName: 'SWIFT_SOCIAL',
+      dbName: 'Social-Web',
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

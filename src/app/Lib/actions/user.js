@@ -1,7 +1,7 @@
 
 
-import User from '../models/user.modal';
-import { connect } from '../mongodb/mongoose';
+import User from '../modals/usermodal';
+import connect from "../mongodb/mongodb"
 
 export const createOrUpdateUser = async (
   id,
@@ -9,7 +9,7 @@ export const createOrUpdateUser = async (
   last_name,
   image_url,
   email_addresses,
-  username
+
 ) => {
   try {
     await connect();
@@ -21,7 +21,7 @@ export const createOrUpdateUser = async (
           lastName: last_name,
           avatar: image_url,
           email: email_addresses[0].email_address,
-          username,
+    
         },
       },
       { new: true, upsert: true }
