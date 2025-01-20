@@ -1,5 +1,11 @@
+import {
+  ClerkProvider
+} from '@clerk/nextjs'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import LeftSlider from './components/LeftSlider';
+import RightSlider from './components/RightSlider';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +24,28 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+<ClerkProvider>
+<html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+
+<div className="w-[100%] h-fit flex justify-between">
+  <div className="">
+   <LeftSlider/>
+  </div>
+  
+  <div>
+  {children}
+
+  </div>
+<div className='w-[20%]'>
+ <RightSlider/>
+</div>
+</div>
+
       </body>
     </html>
+  </ClerkProvider>
   );
 }
