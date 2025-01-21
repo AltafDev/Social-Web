@@ -7,7 +7,7 @@ export const CreateOrUpdateUser = async (
   first_name,
   last_name,
   image_url,
-  email_addresses,
+  email_addresses
 
 ) => {
   try {
@@ -19,7 +19,7 @@ export const CreateOrUpdateUser = async (
           firstName: first_name,
           lastName: last_name,
           avatar: image_url,
-          email: email_addresses[0].email_address,
+          email: email_addresses[0].email_address
     
         },
       },
