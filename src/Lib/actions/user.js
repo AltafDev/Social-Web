@@ -1,9 +1,9 @@
 
 
 import User from '../modals/usermodal';
-import connect from "../mongodb/mongodb"
+import Connect from "../mongodb/mongodb"
 
-export const createOrUpdateUser = async (
+export const CreateOrUpdateUser = async (
   id,
   first_name,
   last_name,
@@ -12,7 +12,7 @@ export const createOrUpdateUser = async (
 
 ) => {
   try {
-    await connect();
+    await Connect();
     const user = await User.findOneAndUpdate(
       { clerkId: id },
       {
@@ -32,9 +32,9 @@ export const createOrUpdateUser = async (
   }
 };
 
-export const deleteUser = async (id) => {
+export const DeleteUser = async (id) => {
   try {
-    await connect();
+    await Connect();
     await User.findOneAndDelete({ clerkId: id });
   } catch (error) {
     console.log('Error deleting user:', error);

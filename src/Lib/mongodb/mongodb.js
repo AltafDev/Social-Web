@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 let initialized = false;
 
-export const connect = async () => {
+export const Connect = async () => {
   mongoose.set('strictQuery', true);
   if (initialized) {
     console.log('Already connected to MongoDB');
@@ -10,7 +10,7 @@ export const connect = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.Connect(process.env.MONGO_URI, {
       dbName: 'Social-Web',
       useNewUrlParser: true,
       useUnifiedTopology: true,
