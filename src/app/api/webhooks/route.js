@@ -1,14 +1,17 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { clerkClient } from '@clerk/nextjs/server';
-import { CreateOrUpdateUser,DeleteUser } from '../../../Lib/actions/user';
+import { CreateOrUpdateUser, DeleteUser } from '../../../Lib/actions/user';
+import { NextResponse } from 'next/server';
+
 export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.Webhook_Key;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error(
-      'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local'
+    return NextResponse.json(
+      { error: 'Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local' },
+      { status: 400 }
     );
   }
 
@@ -20,9 +23,7 @@ export async function POST(req) {
 
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response('Error occured -- no svix headers', {
-      status: 400,
-    });
+    return NextResponse.json({ error: 'Missing Svix headers' }, { status: 400 });
   }
 
   // Get the body
@@ -43,30 +44,26 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error('Error verifying webhook:', err);
-    return new Response('Error occured', {
-      status: 400,
-    });
+    return NextResponse.json({ error: 'Error verifying webhook' }, { status: 400 });
+  }
+
+  if (!evt?.data) {
+    console.error('No data in webhook event');
+    return NextResponse.json({ error: 'No data in webhook event' }, { status: 400 });
   }
 
   // Do something with the payload
-  // For this guide, you simply log the payload to the console
-  const { id } = evt?.data;
-  const eventType = evt?.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+  const { id } = evt.data;
+  const eventType = evt.type;
+  console.log(`Webhook with ID: ${id}, Type: ${eventType}`);
   console.log('Webhook body:', body);
 
-  if (eventType === 'user.created' || eventType === 'user.updated') {
-    const { id, first_name, last_name, image_url, email_addresses } =
-      evt?.data;
-    try {
-      const user = await CreateOrUpdateUser(
-        id,
-        first_name,
-        last_name,
-        image_url,
-        email_addresses,
-        
-      );
+  try {
+    // Handle 'user.created' or 'user.updated' event
+    if (eventType === 'user.created' || eventType === 'user.updated') {
+      const { first_name, last_name, image_url, email_addresses } = evt.data;
+      
+      const user = await CreateOrUpdateUser(id, first_name, last_name, image_url, email_addresses);
       if (user && eventType === 'user.created') {
         try {
           await clerkClient.users.updateUserMetadata(id, {
@@ -75,28 +72,19 @@ export async function POST(req) {
             },
           });
         } catch (error) {
-          console.log('Error updating user metadata:', error);
+          console.error('Error updating user metadata:', error);
         }
       }
-    } catch (error) {
-      console.log('Error creating or updating user:', error);
-      return new Response('Error occured', {
-        status: 400,
-      });
     }
-  }
 
-  if (eventType === 'user.deleted') {
-    const { id } = evt?.data;
-    try {
+    // Handle 'user.deleted' event
+    if (eventType === 'user.deleted') {
       await DeleteUser(id);
-    } catch (error) {
-      console.log('Error deleting user:', error);
-      return new Response('Error occured', {
-        status: 400,
-      });
     }
+  } catch (error) {
+    console.error('Error processing webhook event:', error);
+    return NextResponse.json({ error: 'Error processing webhook event' }, { status: 400 });
   }
 
-  return new Response('', { status: 200 });
+  return NextResponse.json({ message: 'Webhook processed successfully' }, { status: 200 });
 }
