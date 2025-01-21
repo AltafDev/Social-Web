@@ -2,28 +2,25 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
     clerkId: {
-      type: String,
-      required: true,
-      unique: true,
+      type: String
     },
     email: {
       type: String,
     },
     username: {
-      type: String,
-      required: true,
+      type: String
     },
     firstName: {
-      type: String,
-      required: true,
+      type: String
     },
     lastName: {
-      type: String,
-      required: true,
+      type: String
     },
     avatar: {
-      type: String,
-      required: true,
+      type: String
+    },
+    username:{
+      type:String
     }
   },
   { timestamps: true }
