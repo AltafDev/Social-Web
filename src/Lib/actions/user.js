@@ -1,7 +1,6 @@
 
-
 import User from '../modals/usermodal';
-import Connect from "../mongodb/mongodb"
+import { Connect } from '../mongodb/mongodb';
 
 export const CreateOrUpdateUser = async (
   id,
