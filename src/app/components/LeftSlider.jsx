@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Example from "./Example"
 import {
   ClerkProvider,
   SignInButton,
@@ -21,6 +21,7 @@ export default function LeftSlider() {
               </SignedIn>
             </button> 
             </ClerkProvider>
+            <Example/>
     </>
   )
 }
