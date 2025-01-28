@@ -1,11 +1,9 @@
-
 import React from 'react'
-import Input from "../app/components/Input"
-
+import NewInput from "../app/components/NewInput"
 export default function page() {
   return (
-    <>
-    <Input/>
-    </>
+    <div>
+      <NewInput/>
+    </div>
   )
 }

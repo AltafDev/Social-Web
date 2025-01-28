@@ -3,7 +3,7 @@ import React from 'react'
 import { FaImage } from "react-icons/fa";
 import { useUser } from '@clerk/nextjs';
 import { useRef } from 'react';
-export default function Input() {
+export default function NewInput() {
   const ImageSend=useRef(null)
 
     const { user ,isSignedIn,isLoaded} = useUser();
