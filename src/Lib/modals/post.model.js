@@ -11,7 +11,7 @@ const postschema = new mongoose.Schema({
   },
   user:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:User,
+    ref:"User",
     required:true
   },
   username:{
@@ -27,7 +27,7 @@ const postschema = new mongoose.Schema({
 
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:User,
+        ref:"User",
        },
        name:{
         type:String,        
@@ -48,7 +48,7 @@ const postschema = new mongoose.Schema({
 
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:User,
+        ref:"User",
        },
        name:{
         type:String,        
