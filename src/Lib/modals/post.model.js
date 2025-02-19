@@ -67,7 +67,7 @@ const postschema = new mongoose.Schema({
 },
 { timestamps: true })
 
-const post = mongoose.models.User || mongoose.model('User', postschema);
+const post = mongoose.models.User || mongoose.model('post', postschema);
 
 export default post;
 

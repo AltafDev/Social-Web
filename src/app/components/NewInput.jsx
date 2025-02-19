@@ -98,7 +98,7 @@ export default function Input() {
   }}
 </CldUploadWidget>
    
-        <button className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
+        <button onClick={HandleSubmit} className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
         Post
       </button>
       
