@@ -1,9 +1,9 @@
 import React from 'react'
-import NewInput from "../app/components/NewInput"
+import NewInput from "./components/NewInput"
 export default function page() {
   return (
-    <div>
-      <NewInput/>
-    </div>
+    <>
+     <NewInput/>
+    </>
   )
 }

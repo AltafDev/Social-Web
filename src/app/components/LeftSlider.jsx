@@ -1,17 +1,20 @@
+"use client"
 import React from 'react'
 import {
   ClerkProvider,
   SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
+  UserButton,
+ 
 
 } from '@clerk/nextjs'
 export default function LeftSlider() {
+  
   return (
     <>
-    <ClerkProvider>
-     <button>
+    <ClerkProvider >
+     <button >
               <SignedOut >
                 <SignInButton className="w-[100px] h-[30px] bg-slate-400 " />
               </SignedOut>
@@ -19,7 +22,11 @@ export default function LeftSlider() {
                 <UserButton />
               </SignedIn>
             </button> 
+            
+    
             </ClerkProvider>
+            
+           
     </>
   )
 }

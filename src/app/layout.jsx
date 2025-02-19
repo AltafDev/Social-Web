@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/nextjs";
+import {  ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -23,24 +23,28 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
 <ClerkProvider>
+  
 <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
 
-<div className="w-[100%] h-fit flex justify-between">
-  <div className="">
+
+  <div className="w-[100%] h-fit gap-10 flex justify-between">
+  <div className="w-[25%] ">
    <LeftSlider/>
   </div>
   
-  <div>
+  <div className="w-[50%] " >
   {children}
 
   </div>
-<div className='w-[20%]'>
+<div className="w-[25%] ">
  <RightSlider/>
 </div>
 </div>
+
+
 
       </body>
     </html>
