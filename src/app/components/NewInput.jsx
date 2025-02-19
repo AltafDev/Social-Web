@@ -81,11 +81,11 @@ export default function Input() {
          </div> */}
     
 
-      {/* {selectedImage && (
+      {selectedImage && (
         <div className="relative">
           <img src={selectedImage} alt="Uploaded" className="w-full rounded-lg shadow-md" />
         </div>
-      )} */}
+      )}
 
       <div className="flex  justify-between">
       <CldUploadWidget uploadPreset="Social_web"   >
