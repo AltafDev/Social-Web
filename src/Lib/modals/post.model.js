@@ -1,84 +1,47 @@
 import mongoose from "mongoose"
 
-
-const postschema = new mongoose.Schema({
-    text:{
-        type:String,
-        required:true
+const POSTSchema = new mongoose.Schema({
+    text: {
+        type: String,
+        required: true
     },
-  image:{
-    type:String
-  },
-  user:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"User",
-    required:true
-  },
-  username:{
-    type:String,
-    required:true
-  },
-   profileimage:{
-    type:String,
-    required:true
-   },
-   comments:{  
-    type:[{comments,String}],
+    image: {
+        type: String,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    profileImg: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        default: []
+    },
+    comments: {
+        type: [{
+            comment: String,
+            user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+            name: String,
+            username: String,
+            profileImg: String,
+            createdAt: { type: Date, default: Date.now() },
+        }],
+        default: []
+    }
+}, { timestamps: true });
 
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-       },
-       name:{
-        type:String,        
-       },
-       username:{
-        type:String
-       },
-       profileimage:{
-        type:String
-       },
-       createdat:{
-        type:String,
-        default:Date.now
-       },
- },
- likes:{  
-    type:[{likes,String}],
+const POST = mongoose.models.Post || mongoose.model('Post', POSTSchema);
 
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-       },
-       name:{
-        type:String,        
-       },
-       username:{
-        type:String
-       },
-       profileimage:{
-        type:String
-       },
-       createdat:{
-        type:String,
-        default:Date.now
-       },
-}
-},
-{ timestamps: true })
-
-const post = mongoose.models.User || mongoose.model('post', postschema);
-
-export default post;
-
-
-
-
-
-
-
-
-
-
-
-
+export default POST;

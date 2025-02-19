@@ -1,4 +1,4 @@
-import post from "../../../../Lib/modals/post.model"
+import POST from "../../../../Lib/modals/post.model"
 import {currentUser} from "@clerk/nextjs/server"
 
 import {Connect } from "../../../../Lib/mongodb/mongodb"
@@ -12,7 +12,7 @@ export async function POST (req){
             return new Response("unauthtorized",{status:401})
 
         } 
-        const newPost = await post.create({
+        const newPost = await POST.create({
             user:data.userMongoId,
             name:data.name,
             username:data.username,
