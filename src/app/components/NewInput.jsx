@@ -2,7 +2,6 @@
 import React, { useRef, useState } from 'react';
 import { FaImage } from "react-icons/fa";
 import { useUser } from '@clerk/nextjs';
-import { ImCancelCircle } from "react-icons/im";
 import { CldUploadWidget } from 'next-cloudinary';
 
 export default function Input() {
