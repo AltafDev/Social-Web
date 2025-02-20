@@ -1,18 +1,18 @@
-import POST from "../../../../Lib/modals/post.model"
-import { connect } from "../../../../Lib/mongodb/mongodb"
+import Post from "../../../../Lib/modals/post.model"
+import { Connect } from "../../../../Lib/mongodb/mongodb"
 import { currentUser } from "@clerk/nextjs/server"
 
 export async function Post(req) {
     const user = await currentUser(req)
     try {
-        await connect()
+        await Connect()
         const data = await req.json()
         if (!user || user.publicMetadata.userMongoId !== data.userMongoId) {
             return new Response ("unauthorized", {
                 status:401
             })
         }
-        const newPost = await POST.create({
+        const newPost = await Post.create({
             user:data.userMongoId,
             name:data.name,
             username:data.username,
