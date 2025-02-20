@@ -22,7 +22,7 @@ export default function Input() {
 
   const HandleSubmit=async()=>{
     setPostLoading(true);
-
+    alert("hi")
     const response=await fetch(`/api/post/create`,{
       method:"Post",
       headers:{
