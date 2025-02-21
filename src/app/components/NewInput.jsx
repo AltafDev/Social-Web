@@ -87,10 +87,10 @@ export default function Input() {
       )} */}
 
       <div className="flex  justify-between">
-      <CldUploadWidget uploadPreset="Social_web"   >
+      <CldUploadWidget uploadPreset="Social_web" onUpload={HandleUpload}  >
   {({ open }) => {
     return (
-      <button onUpload={HandleUpload} onClick={() => open()}>
+      <button  onClick={() => open()}>
         Upload an Image
       </button>
     );
