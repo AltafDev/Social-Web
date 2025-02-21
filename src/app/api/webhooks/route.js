@@ -2,9 +2,10 @@ import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { clerkClient } from '@clerk/nextjs/server';
 import { CreateOrUpdateUser,DeleteUser } from '../../../Lib/actions/user';
+
 export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
-  const WEBHOOK_SECRET = process.env.Webhook_Key;
+  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -56,7 +57,7 @@ export async function POST(req) {
   console.log('Webhook body:', body);
 
   if (eventType === 'user.created' || eventType === 'user.updated') {
-    const { id, first_name, last_name, image_url, email_addresses,username } =
+    const { id, first_name, last_name, image_url, email_addresses, username } =
       evt?.data;
     try {
       const user = await CreateOrUpdateUser(
@@ -66,7 +67,6 @@ export async function POST(req) {
         image_url,
         email_addresses,
         username
-        
       );
       if (user && eventType === 'user.created') {
         try {
