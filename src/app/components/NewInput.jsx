@@ -24,7 +24,7 @@ export default function Input() {
     setPostLoading(true);
     alert("hi")
     const response=await fetch(`/api/post/create`,{
-      method:"Post",
+      method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
