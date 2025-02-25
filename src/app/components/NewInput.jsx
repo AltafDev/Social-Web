@@ -1,59 +1,54 @@
-"use client"
-import React, { useRef, useState } from 'react';
-import { FaImage } from "react-icons/fa";
-import { useUser } from '@clerk/nextjs';
-import { CldUploadWidget } from 'next-cloudinary';
+"use client";
+import React, { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function Input() {
   const { user, isSignedIn, isLoaded } = useUser();
-  // const IMAGEFILEREF = useRef(null);
+  const [input, setInput] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [input,setinput]=useState("")
   const [postLoading, setPostLoading] = useState(false);
 
   if (!user || !isSignedIn || !isLoaded) {
     return null;
   }
-
-  const HandleUpload=(result)=>{
-    if (result.event === "success" ){
-      setSelectedImage(result.info.secure_url);    }
-  }
-
-  const HandleSubmit=async()=>{
+  console.log("=====> data", user.publicMetadata.userMongoId);
+  const handleImageUpload = (result) => {
+    if ((result.event = "success")) {
+      setSelectedImage(result.info.secure_url);
+    }
+  };
+  const handleSubmit = async () => {
     setPostLoading(true);
-    alert("hi")
-    const response=await fetch(`/api/post/create`,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const response = await fetch("/api/post/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-     body:JSON.stringify({
-      userMongoId: user.publicMetadata.userMongoId,
-      name: user.fullName,
-      username: user.username,
-      text: input, 
-      profileImg: user.imageUrl,
-      image: selectedImage, 
-     })
-    })
-    setinput("")
-    setSelectedImage(null)
+      body: JSON.stringify({
+        userMongoId: user.publicMetadata.userMongoId,
+        name: user.fullName,
+        username: user.username,
+        text: input,
+        profileImg: user.imageUrl,
+        image: selectedImage,
+      }),
+    });
     setPostLoading(false);
-
-  }
-
+    setSelectedImage(null);
+    setInput("");
+  };
 
   return (
     <div className="w-[60vh] flex flex-col p-4 border rounded-lg shadow-lg bg-white  space-y-4">
       <textarea
-      value={input}
-      onChange={(e)=>setinput(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         rows={2}
         className="w-full p-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
         placeholder="Write your post..."
       />
-       {/* <div className="flex justify-between">
+      {/* <div className="flex justify-between">
        <div>
           <FaImage
             size={24}
@@ -78,7 +73,6 @@ export default function Input() {
 
         }
          </div> */}
-    
 
       {/* {selectedImage && (
         <div className="relative">
@@ -87,23 +81,18 @@ export default function Input() {
       )} */}
 
       <div className="flex  justify-between">
-      <CldUploadWidget uploadPreset="Social_web" onUpload={HandleUpload}  >
-  {({ open }) => {
-    return (
-      <button  onClick={() => open()}>
-        Upload an Image
-      </button>
-    );
-  }}
-</CldUploadWidget>
-   
-        <button onClick={HandleSubmit} className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
-        Post
-      </button>
-      
+        <CldUploadWidget uploadPreset="Social_web" onUpload={handleImageUpload}>
+          {({ open }) => {
+            return <button onClick={() => open()}>Upload an Image</button>;
+          }}
+        </CldUploadWidget>
 
-      
-        
+        <button
+          onClick={handleSubmit}
+          className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
+        >
+          Post
+        </button>
       </div>
     </div>
   );
