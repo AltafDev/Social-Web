@@ -2,7 +2,7 @@ import POST from "../../../../Lib/modals/post.model";
 import { Connect } from "../../../../Lib/mongodb/mongodb";
 import { currentUser } from "@clerk/nextjs/server";
 
-export async function Post (req) {
+export async function NewPOST (req) {
   const user = await currentUser(req);
 
   try {
