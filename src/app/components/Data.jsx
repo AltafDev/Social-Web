@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Helo() {
+export default function Data() {
   return (
     <div>
-      Hell
+      
     </div>
   )
 }
