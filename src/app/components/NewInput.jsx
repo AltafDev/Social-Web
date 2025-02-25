@@ -12,18 +12,20 @@ export default function Input() {
   if (!user || !isSignedIn || !isLoaded) {
     return null;
   }
-  console.log("=====> data", user.publicMetadata.userMongoId);
-  const handleImageUpload = (result) => {
-    if ((result.event = "success")) {
-      setSelectedImage(result.info.secure_url);
+  const UploadImageHandler = (result) => {
+    if (result.event = "success") {
+      setSelectedImage(result.info.secure_url)
     }
-  };
-  const handleSubmit = async () => {
-    setPostLoading(true);
-    const response = await fetch("/api/create/route", {
+  }
+  console.log("User mongoDb id=========>" + user.publicMetadata.userMongoId)
+
+  const PostUploadImage = async () => {
+    setPostLoading(true)
+
+    const response = await fetch("/api/post/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         userMongoId: user.publicMetadata.userMongoId,
@@ -31,14 +33,13 @@ export default function Input() {
         username: user.username,
         text: input,
         profileImg: user.imageUrl,
-        image: selectedImage,
-      }),
-    });
-    setPostLoading(false);
-    setSelectedImage(null);
-    setInput("");
-  };
-
+        image: ImageUpload,
+      })
+    })
+    setInput("")
+    setPostLoading(false)
+    setSelectedImage(null)
+  }
   return (
     <div className="w-[60vh] flex flex-col p-4 border rounded-lg shadow-lg bg-white  space-y-4">
       <textarea
@@ -81,14 +82,14 @@ export default function Input() {
       )} */}
 
       <div className="flex  justify-between">
-        <CldUploadWidget uploadPreset="Social_web" onUpload={handleImageUpload}>
+        <CldUploadWidget uploadPreset="Social_web" onUpload={UploadImageHandler}>
           {({ open }) => {
             return <button onClick={() => open()}>Upload an Image</button>;
           }}
         </CldUploadWidget>
 
         <button
-          onClick={handleSubmit}
+          onClick={PostUploadImage}
           className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
         >
           Post
