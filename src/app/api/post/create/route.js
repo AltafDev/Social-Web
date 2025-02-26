@@ -1,8 +1,9 @@
-import POST from "../../../../Lib/modals/post.model";
+import Post from "../../../../Lib/modals/post.model";
 import { Connect } from "../../../../Lib/mongodb/mongodb";
 import { currentUser } from "@clerk/nextjs/server";
 export async function Post(req) {
   const user = await currentUser(req);
+  console.log(user)
   try {
     await Connect();
     const data = await req.json();
@@ -11,7 +12,7 @@ export async function Post(req) {
       return new Response("Unauthorized", { status: 401 });
     }
 
-    const newPost = await POST.create({
+    const newPost = await Post.create({
       user: data.userMongoId,
       name: data.name,
       username: data.username,
