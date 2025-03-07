@@ -36,6 +36,7 @@ export default function Input() {
         image: ImageUpload,
       })
     })
+    console.log("Hello")
     setInput("")
     setPostLoading(false)
     setSelectedImage(null)
