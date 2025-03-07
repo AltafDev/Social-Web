@@ -19,33 +19,30 @@ export default function Input() {
   }
   console.log("User mongoDb id=========>" + user.publicMetadata.userMongoId)
 
-  const PostUploadImage = async () => {
-    // setPostLoading(true)
-
-    // try {
-    //   const response = await fetch("/api/post/create", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       userMongoId: user.publicMetadata.userMongoId,
-    //       name: user.fullName,
-    //       username: user.username,
-    //       text: input,
-    //       profileImg: user.imageUrl,
-    //       image: ImageUpload,
-    //     })
-    //   })
-    //   console.log("Hello")
-    //   setInput("")
-    //   setPostLoading(false)
-    //   setSelectedImage(null)
-    // } catch (error) {
-    //   console.log(error )
-    // }
-
-    alert("Hello")
+  const handleSubmit = async () => {
+    setPostLoading(true)
+    const response = await fetch("/api/post/create",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+  
+      },
+        body: JSON.stringify({
+              userMongoId:user.publicMetadata.userMongoId,
+          name: user.fullName,
+          username: user.username,
+          text: input,
+          profileImg: user.imageUrl,
+          image: selectedImage,
+  
+              }),
+  
+    })
+    setPostLoading(false)
+    setSelectedImage(null)
+    setInput("")
+  
+  
   }
   return (
    <>
@@ -67,7 +64,7 @@ export default function Input() {
         </CldUploadWidget>
 
         <button
-          onClick={PostUploadImage}
+          onClick={handleSubmit}
           className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
         >
           Post
