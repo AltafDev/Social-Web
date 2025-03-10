@@ -17,7 +17,7 @@ export default function Input() {
       setSelectedImage(result.info.secure_url)
     }
   }
-  console.log("User mongoDb id=========>" + user.publicMetadata.userMongoId)
+  // console.log("User mongoDb id=========>" + user.publicMetadata.userMongoId)
 
   const handleSubmit = async () => {
     setPostLoading(true)
