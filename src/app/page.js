@@ -3,7 +3,7 @@ import NewInput from "./components/NewInput"
 export default async function page() {
   let data=null
   try {
-    const result=await fetch(process.env.URL+"/api/post/all",{
+    const result=await fetch("https://social-web-qdd9.vercel.app/api/post/all",{
       method:"POST",
       cache:"no-store"
     })
@@ -11,10 +11,21 @@ export default async function page() {
   } catch (error) {
     console.log(error)
   }
+  console.log(data)
   return (
     <>
      <NewInput/>
 
+<div>
+  {
+    data.map((item)=>(
+      <div key={item.id}>
+        <h1>{item.text}</h1>
+      </div>
+      
+    ))
+  }
+</div>
     </>
   )
 }
