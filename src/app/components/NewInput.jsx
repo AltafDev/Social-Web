@@ -63,12 +63,15 @@ export default function Input() {
           }}
         </CldUploadWidget>
 
-        <button
-          onClick={handleSubmit}
-          className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
-        >
-          Post
-        </button>
+  
+  <button 
+  onClick={handleSubmit}
+  className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
+>
+ Post
+  
+</button>
+
       </div>
     </div>
         {/* <div className="flex justify-between">
