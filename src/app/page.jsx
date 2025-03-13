@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import NewInput from "./components/NewInput"
 import "./components/PostStyle.css"
@@ -6,7 +7,6 @@ import { FaComments } from "react-icons/fa6";
 import { FaShare } from "react-icons/fa";
 
 export default async function page() {
-const userImg = `https://i.pinimg.com/1200x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg`
 const HomeImg = `https://media.istockphoto.com/id/1255835530/photo/modern-custom-suburban-home-exterior.jpg?s=612x612&w=0&k=20&c=0Dqjm3NunXjZtWVpsUvNKg2A4rK2gMvJ-827nb4AMU4=`
   let data=null
   try {
