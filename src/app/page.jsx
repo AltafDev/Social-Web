@@ -1,4 +1,4 @@
-"use client"
+
 import React from 'react'
 import NewInput from "./components/NewInput"
 import "./components/PostStyle.css"
@@ -6,7 +6,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaComments } from "react-icons/fa6";
 import { FaShare } from "react-icons/fa";
 
-export default async function page() {
+export default async function page () {
 const HomeImg = `https://media.istockphoto.com/id/1255835530/photo/modern-custom-suburban-home-exterior.jpg?s=612x612&w=0&k=20&c=0Dqjm3NunXjZtWVpsUvNKg2A4rK2gMvJ-827nb4AMU4=`
   let data=null
   try {
