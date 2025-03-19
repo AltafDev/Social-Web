@@ -10,7 +10,7 @@ export default async function page () {
 const HomeImg = `https://media.istockphoto.com/id/1255835530/photo/modern-custom-suburban-home-exterior.jpg?s=612x612&w=0&k=20&c=0Dqjm3NunXjZtWVpsUvNKg2A4rK2gMvJ-827nb4AMU4=`
   let data=null
   try {
-    const result=await fetch("https://social-web-qdd9.vercel.app/api/post/all",{
+    const result=await fetch("https://social-web-qdd9-git-main-altafdevs-projects-be8e2cbb.vercel.app/api/post/all",{
       method:"POST",
       cache:"no-store"
     })
