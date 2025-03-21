@@ -9,6 +9,7 @@ import { FaShare } from "react-icons/fa";
 import axios from "axios";
 
 export default  function page () {
+  const [num,setnum]=useState(0)
 const HomeImg = `https://media.istockphoto.com/id/1255835530/photo/modern-custom-suburban-home-exterior.jpg?s=612x612&w=0&k=20&c=0Dqjm3NunXjZtWVpsUvNKg2A4rK2gMvJ-827nb4AMU4=`
  useEffect(() => {
   GetData()
@@ -64,7 +65,7 @@ const [data,setData]=useState([])
   <img src={item.image ? item.image : HomeImg} alt="" />
 </div>
 <div className="event-buttons">
-  <div className="like"><span><AiFillLike /></span> <span>Like</span> </div>
+  <div className="like"><span><AiFillLike /></span> <span onClick={()=>setnum(num+1)}>Like</span> </div>
   <div className="comments">
    <button> <span><FaComments /></span>
    <span>Comments</span></button>
