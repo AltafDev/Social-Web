@@ -11,16 +11,16 @@ const HomeImg = `https://media.istockphoto.com/id/1255835530/photo/modern-custom
  
 
 let data=null
-  try {
-    const result=await fetch("/api/post/all",{
-      method:"POST",
-      cache:"no-store"
-    })
-    data=await result.json()
-  } catch (error) {
-    console.log(error)
-  }
-  console.log(data)
+  // try {
+  //   const result=await fetch("/api/post/all",{
+  //     method:"POST",
+  //     cache:"no-store"
+  //   })
+  //   data=await result.json()
+  // } catch (error) {
+  //   console.log(error)
+  // }
+  // console.log(data)
   return (
     <>
      <NewInput/>
