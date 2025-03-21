@@ -29,7 +29,7 @@ let data=null
 
  
   {
-    data.map((item)=>(
+    data?.map((item)=>(
       
       <>
        <div className="main-post">
