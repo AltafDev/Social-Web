@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import NewInput from "./components/NewInput"
 import "./components/PostStyle.css"
 import { AiFillLike } from "react-icons/ai";
