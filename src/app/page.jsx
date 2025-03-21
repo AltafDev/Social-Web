@@ -1,4 +1,5 @@
 
+"use client"
 import React, { useEffect } from 'react'
 import NewInput from "./components/NewInput"
 import "./components/PostStyle.css"
